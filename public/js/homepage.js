@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     const commentButtons = document.querySelectorAll('.commentbtn');
     const commentLabels = document.querySelectorAll('.commentlabel');
-    const commentTextareas = document.querySelectorAll('#comment');
+    const commentTextareas = document.querySelectorAll('.comment');
     const submitButtons = document.querySelectorAll('.submit-comment');
   
     commentButtons.forEach((commentButton, index) => {
       commentButton.addEventListener('click', (event) => {
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault(); 
   
         commentLabels[index].style.display = "block";
         commentTextareas[index].style.display = "block";
@@ -14,18 +14,19 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   
-    submitButtons.forEach((submitButton) => {
+    submitButtons.forEach((submitButton, index) => {
       submitButton.addEventListener('click', async (event) => {
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault(); 
   
-        const commentTextarea = submitButton.previousElementSibling;
-        const comment = commentTextarea.value.trim();
+        // const commentTextarea = submitButton.previousElementSibling;
+        
         const postId = submitButton.getAttribute('data-post-id');
   
-        if (comment && postId) {
-          const response = await fetch('/comments', {
+        
+          const comment = commentTextareas[index].value.trim();
+          const response = await fetch(`/addcomment/${postId}`, {
             method: 'POST',
-            body: JSON.stringify( {comment, postId }),
+            body: JSON.stringify( { comments: comment }),
             headers: { 'Content-Type': 'application/json' },
           });
   
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
           } else {
             alert('Failed to submit comment.');
           }
-        }
+        
       });
     });
   });
