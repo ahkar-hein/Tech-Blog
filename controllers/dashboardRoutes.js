@@ -3,6 +3,7 @@ const router = require('express').Router();
 const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
+// get request for getting all post associated by logged in user
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
     // Get the logged-in user's posts
@@ -26,10 +27,11 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }
 });
 
+// update the user's post with post id (params)
 router.put('/edit/:id', withAuth, async (req, res) => {
   try {
     const postId = req.params.id;
-    const { title, content } = req.body;
+    const { title, content } = req.body; //title and content from body textbox.
 
     // Use the update method to perform the force update
     const updatedPost = await Post.update(
@@ -49,7 +51,7 @@ router.put('/edit/:id', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+// delete route for user's post
 router.delete('/posts/:id', withAuth, async (req, res) => {
   try {
     const post = await Post.findByPk(req.params.id);
@@ -72,7 +74,7 @@ router.delete('/posts/:id', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+// post route for create new post
 router.post('/addpost', withAuth, async (req, res) => {
   try {
     const newPost = await Post.create({

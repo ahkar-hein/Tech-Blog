@@ -2,7 +2,7 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Post extends Model {}
-
+// Post model that going to be record the user created post with user_id foreign key
 Post.init(
     {
         id: {
@@ -29,7 +29,7 @@ Post.init(
     },
     {
         sequelize,
-        timestamps: true,
+        timestamps: true, // record the created post date and time
         freezeTableName: true,
         underscored: true,
         modelName: 'post',

@@ -1,3 +1,4 @@
+{{!-- This is main hbs --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +16,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
+        {{!-- if user logged_in dashboard and logout will be appera otherwise login will appear in nav bar --}}
         {{#if logged_in}}
           <li class="nav-item">
             <a class="nav-link" href="/dashboard">Dashboard</a>
@@ -30,10 +32,11 @@
       </ul>
     </div>
   </nav>
-
-  {{{body}}}
+{{!-- {{{body}}} which mean all other dashboard, homepage, login, sign up form will be display in this area --}}
+  {{{body}}} 
 </body>
 </html>
+{{!-- if user logged)in logout.js will be running --}}
  {{#if logged_in}}
 <script src="/js/logout.js"></script>
   {{/if}}

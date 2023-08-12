@@ -2,7 +2,7 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Comment extends Model {}
-
+// sequelize model for comment user_id and post id as an foreign key
 Comment.init(
     {
         id: {
@@ -33,7 +33,7 @@ Comment.init(
     {
         sequelize,
         force: true,
-        timestamps: true,
+        timestamps: true, //record the user created comment date time 
         freezeTableName: true,
         underscored: true,
         modelName: 'comment',

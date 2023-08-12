@@ -1,7 +1,9 @@
+{{!-- this home page hbs display post title, content who created and commented by using each loop --}}
 {{#each posts}}
   <ul class="list-group">
     <li class="list-group-item">
       <form class="homepage-form">
+        {{!-- this button display title and also can be show the comment area when user clicked --}}
         <button class="commentbtn">{{title}}</button>
         <p>{{content}}</p>
         <b>(Created by {{user.name}})</b>

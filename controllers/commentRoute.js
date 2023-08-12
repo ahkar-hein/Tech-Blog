@@ -4,7 +4,7 @@ const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 
-
+// Post request for add new comment getting comment data from body, user_id from session and post id from params.
 router.post('/addcomment/:postID', withAuth, async (req, res) => {
     try {
       const newComment = await Comment.create({

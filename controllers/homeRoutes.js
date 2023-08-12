@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
-
+// getting all users post include associated user and comment to display who created and commended
 router.get('/', withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -20,6 +20,8 @@ router.get('/', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+//  login route with auth
 router.get('/login', withAuth, (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
@@ -28,7 +30,7 @@ router.get('/login', withAuth, (req, res) => {
   }
   res.render('login');
 });
-
+// signup route
 router.get('/signup', (req, res) => {
   res.render('signup')
 });
