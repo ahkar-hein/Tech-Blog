@@ -1,31 +1,39 @@
 <h1>Your Dashboard</h1>
+
 <div class="row">
   <div class="col-md-6">
     <h2>Your Posts</h2>
     <ul class="list-group">
       {{#each userPosts}}
-        <li class="list-group-item">
-          <h3>{{title}}</h3>
-          <p>{{content}}</p>
-        </li>
+      <li class="list-group-item">
+        <h3>{{title}}</h3>
+        <p>{{content}}</p>
+        <a href="/dashboard/edit/{{id}}" class="btn btn-primary">Edit</a>
+        <button class="btn btn-danger delete-post" data-post-id="{{id}}">Delete</button>
+      </li>
       {{/each}}
     </ul>
   </div>
-  <br>
-  <div >
-    <h2>Add a New Post</h2>
-    <form class="form dashboard">
-      <div class="form-group">
-        <label for="title">Title:</label>
-        <input class="form-input" type="text" id="title" name="title" />
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h2>Add a New Post</h2>
+        <form class="form dashboard">
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <input class="form-input" type="text" id="title" name="title" />
+          </div>
+          <div class="form-group">
+            <label for="content">Content:</label>
+            <textarea class="form-input" id="content" name="content"></textarea>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary" type="submit">Add Post</button>
+          </div>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="content">Content:</label>
-        <textarea class="form-input" id="content" name="content"></textarea>
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">Add Post</button>
-      </div>
-    </form>
+    </div>
   </div>
+</div>
+</div>
 <script src="/js/dashboard.js"></script>

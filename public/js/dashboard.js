@@ -25,3 +25,25 @@ const handleFormSubmit = async (event) => {
 };
 
 dashboardForm.addEventListener('submit', handleFormSubmit);
+
+document.addEventListener('DOMContentLoaded', () => {
+  const deleteButtons = document.querySelectorAll('.delete-post');
+
+  deleteButtons.forEach((deleteButton) => {
+    deleteButton.addEventListener('click', async (event) => {
+      event.preventDefault();
+      
+      const postId = deleteButton.getAttribute('data-post-id');
+      const response = await fetch(`/posts/${postId}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (response.ok) {
+        document.location.reload('/dashboard');
+      } else {
+        alert('Failed to delete post.');
+      }
+    });
+  });
+});
