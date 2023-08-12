@@ -6,7 +6,7 @@ Tech Blog is a web application where users can share their thoughts and ideas ab
             
 * [Installation](#installation)
 * [Usage](#usage)
-* [Walkthrough-Video](#walkthrough-video)
+* [Mock_up](#mock-up)
 * [Contributing](#contributing)
 * [Question](#question)
             
@@ -22,7 +22,7 @@ Please read the installation instruction are as follow:
 ## Usage 
 Clone the repo and run the application with installation instruction.
 
-## Walkthrough-Video
+## Mock_up
 
 You can view the walkthrough video at [https://enigmatic-retreat-24327-db0de0ee7a05.herokuapp.com/].
             
