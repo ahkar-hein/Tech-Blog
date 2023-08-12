@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const commentButtons = document.querySelectorAll('.commentbtn');
     const commentLabels = document.querySelectorAll('.commentlabel');
-    const commentTextareas = document.querySelectorAll('.comment');
+    const commentTextareas = document.querySelectorAll('#comment');
     const submitButtons = document.querySelectorAll('.submit-comment');
   
     commentButtons.forEach((commentButton, index) => {

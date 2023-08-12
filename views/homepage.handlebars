@@ -4,11 +4,16 @@
       <form class="homepage-form">
         <button class="btn btn-link commentbtn">{{title}}</button>
         <h3>{{content}}</h3>
+        <b>(Created by {{user.name}})</b>
+        {{#each comments}}
+            <li class="list-group-item">{{comments}} (Commented by {{this.user.name}})</li>
+          {{/each}}
         <label class="commentlabel" style="display: none;">Add a Comment:</label>
-        <textarea class="form-control comment" style="display: none;"></textarea>
+        <textarea class="form-control" id="comment" style="display: none;"></textarea>
         <button class="btn btn-primary submit-comment" style="display: none;" data-post-id="{{id}}">Submit Comment</button>
       </form>
     </li>
   </ul>
 {{/each}}
 <script src="/js/homepage.js"></script>
+

@@ -1,6 +1,9 @@
 const router = require('express').Router();
+const { Model } = require('sequelize');
 const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
+
+
 
 router.post('/addcomment/:postID', withAuth, async (req, res) => {
     try {
