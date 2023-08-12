@@ -2,8 +2,8 @@
   <ul class="list-group">
     <li class="list-group-item">
       <form class="homepage-form">
-        <button class="btn btn-link commentbtn">{{title}}</button>
-        <h3>{{content}}</h3>
+        <button class="commentbtn">{{title}}</button>
+        <p>{{content}}</p>
         <b>(Created by {{user.name}})</b>
         {{#each comments}}
             <li class="list-group-item">{{comments}} (Commented by {{this.user.name}})</li>
