@@ -28,11 +28,13 @@ dashboardForm.addEventListener('submit', handleFormSubmit);
 
 document.addEventListener('DOMContentLoaded', () => {
   const deleteButtons = document.querySelectorAll('.delete-post');
+  const editButtons = document.querySelectorAll('.edit-post');
+  const editForms = document.querySelectorAll('.edit-form');
 
   deleteButtons.forEach((deleteButton) => {
     deleteButton.addEventListener('click', async (event) => {
       event.preventDefault();
-      
+
       const postId = deleteButton.getAttribute('data-post-id');
       const response = await fetch(`/posts/${postId}`, {
         method: 'DELETE',
@@ -40,10 +42,45 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       if (response.ok) {
-        document.location.reload('/dashboard');
+        document.location.reload();
       } else {
         alert('Failed to delete post.');
       }
     });
   });
+
+  editButtons.forEach((editButton, index) => {
+    editButton.addEventListener('click', async (event) => {
+      event.preventDefault();
+
+      editForms[index].style.display = 'block';
+
+      const titleElement = editButton.parentElement.querySelector('h3');
+      const contentElement = editButton.parentElement.querySelector('p');
+      const editedTitleInput = editForms[index].querySelector('#editedTitle');
+      const editedContentTextarea = editForms[index].querySelector('#editedContent');
+      const saveButton = editForms[index].querySelector('.save-edit');
+
+      editedTitleInput.value = titleElement.textContent;
+      editedContentTextarea.value = contentElement.textContent;
+
+      const postId = saveButton.getAttribute('data-post-id');
+      saveButton.addEventListener('click', async (event) => {
+          const editedTitle = editedTitleInput.value.trim();
+          const editedContent = editedContentTextarea.value.trim();
+          const response = await fetch(`/edit/${postId}`, {
+            method: 'PUT',
+            body: JSON.stringify({ title: editedTitle, content: editedContent }),
+            headers: { 'Content-Type': 'application/json' },
+          });
+          if (response.ok) {
+            document.location.reload('/dashboard');
+          } else {
+            alert('Failed to edit post.');
+          }
+        
+      })
+    });
+  });
 });
+

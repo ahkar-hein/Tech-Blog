@@ -25,6 +25,30 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }
 });
 
+router.put('/edit/:id', async (req, res) => {
+  try {
+    const postId = req.params.id;
+    const { title, content } = req.body;
+
+    // Use the update method to perform the force update
+    const updatedPost = await Post.update(
+      { title, content },
+      {
+        where: { id: postId },
+        individualHooks: true 
+      }
+    );
+
+    if (updatedPost[0] === 0) {
+      return res.status(404).json({ message: 'No post found with this ID' });
+    }
+
+    res.status(200).json(updatedPost);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.delete('/posts/:id', withAuth, async (req, res) => {
   try {
     const post = await Post.findByPk(req.params.id);
