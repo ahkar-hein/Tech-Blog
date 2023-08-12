@@ -26,7 +26,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }
 });
 
-router.put('/edit/:id', async (req, res) => {
+router.put('/edit/:id', withAuth, async (req, res) => {
   try {
     const postId = req.params.id;
     const { title, content } = req.body;
@@ -73,7 +73,7 @@ router.delete('/posts/:id', withAuth, async (req, res) => {
   }
 });
 
-router.post('/addpost', async (req, res) => {
+router.post('/addpost', withAuth, async (req, res) => {
   try {
     const newPost = await Post.create({
       title: req.body.title,
